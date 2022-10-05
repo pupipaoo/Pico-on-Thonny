@@ -7,9 +7,15 @@ button=machine.Pin(11,machine.Pin.IN,machine.Pin.PULL_UP)
 sw_time=0.5
 i=0
 LEDS=['pin_led0','pin_led1','pin_led2']
-
+LEDS2=['pin_led2','pin_led1','pin_led0']
 while True:
-    for k in range(0,3):
-        s=eval(LEDS[k%3])
-        s.toggle()
-        sleep(sw_time)
+    if button.value()==0:
+        for k in range(0,3):
+            s=eval(LEDS[k%3])
+            s.toggle()
+            sleep(sw_time)
+    else:
+        for k in range(0,3):
+            s=eval(LEDS2[k%3])
+            s.toggle()
+            sleep(sw_time)
