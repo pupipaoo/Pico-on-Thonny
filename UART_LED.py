@@ -1,9 +1,9 @@
 import uos
 import machine
 import utime
-data = b""
+data = b"" #這是databit的社訂嗎? databit:通常設定8bit,這樣才知道每傳過去8位元即成一個字元
 print(uos.uname())
-uart0 = machine.UART(0,baudrate=115200)  #at-command
+uart0 = machine.UART(0,baudrate=115200)  #at-command #baurate=每秒傳幾bit
 
 def sendCMD_waitResp(cmd, uart=uart0, timeout=1000):
     print("CMD: " + cmd)
