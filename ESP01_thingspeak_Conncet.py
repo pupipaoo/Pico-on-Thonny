@@ -34,7 +34,7 @@ sendCMD_waitResp("AT+RST\r\n") #reset the esp8266
 
 sendCMD_waitResp("AT+CWMODE=1\r\n")   #set wifi mode 1:client 2:AP 3: Both
 
-sendCMD_waitResp('AT+CWJAP="My ASUS","jade1234"\r\n', 5000) #connecting
+sendCMD_waitResp('AT+CWJAP="My ASUS","jade1234"\r\n', 5000) #connecting #5000是PORT
 
 sendCMD_waitResp("AT+CIPMUX=0\r\n")  # multi user
 
