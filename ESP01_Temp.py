@@ -36,7 +36,7 @@ sendCMD_waitResp("AT+RST\r\n") #reset the esp8266
 sendCMD_waitResp("AT+CWMODE?\r\n") #chekck wifi mode
 sendCMD_waitResp("AT+CWMODE=3\r\n") #set wifi mode 1:client 2:AP 3: Both
 sendCMD_waitResp("AT+CWLAP\r\n", 5000) #all list of AP
-sendCMD_waitResp('AT+CWJAP="My ASUS","jade1234"\r\n', 10000) #connecting  Walter_4G
+sendCMD_waitResp('AT+CWJAP="My ASUS","jade1234"\r\n', 10000) #connecting  Walter_4G #10000是PORT
 sendCMD_waitResp("AT\r\n")
 sendCMD_waitResp("AT+CIPSTATUS\r\n")
 sendCMD_waitResp("AT+CIPMUX=1\r\n") #TCP/UDP Connections - multiple
