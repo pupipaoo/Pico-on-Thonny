@@ -55,10 +55,10 @@ def waitResp(timeout=2000,debug=False):
 def connet_wifi(ssid, passwd):
     
     #waitResp() 
-    sendCMD_waitResp("AT+RST") #reset the esp8266
-    sendCMD_waitResp("AT+CWMODE=0")   #set wifi mode 1:client 2:AP 3: Both
+    sendCMD_waitResp("AT+RST") #reset the esp8266       #sendCMD是ESP8266的AT Command
+    sendCMD_waitResp("AT+CWMODE=0")   #set wifi mode 1:client 2:AP 3: Both  #開啟wifi 模式
     sendCMD_waitResp('AT+CWJAP='+"My ASUS"+','+"jade1234",timeout=5000) #connecting
-    sendCMD_waitResp("AT+CIPMUX=0")  # 0: single connection; 1:multi user
+    sendCMD_waitResp("AT+CIPMUX=0")  # 0: single connection(自己去連別人); 1:multi user(多人連線，連很多serever,被別人連才用這個)
     resp=sendCMD_waitResp("AT+CIFSR")
     start=resp.find('"')+1
     end=resp.find('"',start)
