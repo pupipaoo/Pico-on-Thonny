@@ -7,8 +7,8 @@ print(os.uname())
 
 sensor_temp=machine.ADC(4)
 conversion_factor = 3.3 / 65535
-lens = len('GET /update?api_key=ORAIVXS2FDL752J7&field1="+temp+"\r\n')
-Len = str(lens)
+lens = len('GET /update?api_key=ORAIVXS2FDL752J7&field1="+temp+"\r\n')      #GET method傳送過去的資料量的長度
+Len = str(lens)         #轉成字串
 print(lens)
 utime.sleep(1)
 #functions
@@ -45,9 +45,9 @@ while True:
     print(temp)
     temp=str(temp)
     sendCMD_waitResp('AT+CIPSTART="TCP","184.106.153.149",80\r\n',500)
-    sendCMD_waitResp("AT+CIPSEND="+Len+"\r\n",500)
-    sendCMD_waitResp("GET /update?api_key=ORAIVXS2FDL752J7&field1="+temp+"\r\n")
-    sendCMD_waitResp("AT+CIPCLOSE\r\n")
+    sendCMD_waitResp("AT+CIPSEND="+Len+"\r\n",500)      #是指送幾個BYTE,也就是板子透過TCP送多少資料量給THINGSPEAK，500ms是指等多少時間
+    sendCMD_waitResp("GET /update?api_key=ORAIVXS2FDL752J7&field1="+temp+"\r\n")    #GET 路徑?key=value&key=value \r\n    #temp原本就自串
+    sendCMD_waitResp("AT+CIPCLOSE\r\n")         #TCP斷線
     utime.sleep(5)
 
 sendCMD_waitResp("AT+CIPCLOSE=0\r\n")
