@@ -67,13 +67,13 @@ def connet_wifi(ssid, passwd):
   
     
     
-def send_http_req(ip,port,url,method='GET'): 
+def send_http_req(ip,port,url,method='GET'):            #HTTP訊息以get送出
 
     #GET /sensor?temp=28 HTTP/1.1\r\n\r\n'
     url=method+' '+url+' HTTP/1.1\r\n\r\n'
     sendCMD_waitResp('AT+CIPSTART="TCP","'+ip+'",'+str(port))
-    sendCMD_waitResp('AT+CIPSEND='+str(len(url)))
-    sendCMD_waitResp(url)
+    sendCMD_waitResp('AT+CIPSEND='+str(len(url)))       #算送了幾格byte,並送出
+    sendCMD_waitResp(url)               #送url
     sendCMD_waitResp("AT+CIPCLOSE")
 
 
@@ -84,7 +84,7 @@ myip=connet_wifi(WiFi_SSID,WiFi_PASSWD)
 utime.sleep(5)
 
 while (1):
-    i=round(random.uniform(30,60),2)
+    i=round(random.uniform(30,60),2)    #i是隨便的數字
     url_path='/sensor?temp='+str(i)
     #oled.fill(0)
     #oled.text('temp='+str(i),0,0)
