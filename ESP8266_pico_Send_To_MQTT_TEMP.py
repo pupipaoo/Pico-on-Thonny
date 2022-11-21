@@ -72,7 +72,7 @@ def send_http_req(ip,port,url,method='GET'):            #HTTP訊息以get送出
     #GET /sensor?temp=28 HTTP/1.1\r\n\r\n'
     url=method+' '+url+' HTTP/1.1\r\n\r\n'
     sendCMD_waitResp('AT+CIPSTART="TCP","'+ip+'",'+str(port))
-    sendCMD_waitResp('AT+CIPSEND='+str(len(url)))       #算送了幾格byte,並送出
+    sendCMD_waitResp('AT+CIPSEND='+str(len(url)))       #算送了幾個byte,並送出
     sendCMD_waitResp(url)               #送url
     sendCMD_waitResp("AT+CIPCLOSE")
 
