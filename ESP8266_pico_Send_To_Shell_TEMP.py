@@ -33,7 +33,7 @@ def sendCMD_waitResp(cmd,timeout=100):
     
     print("CMD: " + cmd)
     cmd+='\r\n'
-    uart.write(cmd)  #cmd.encode('utf-8')
+    uart.write(cmd)  #cmd.encode('utf-8')   #若有中文，需要把括弧內的cmd，改成cmd.encode('utf-8')
     return waitResp(timeout)
    
     
@@ -55,11 +55,11 @@ def waitResp(timeout=2000,debug=False):
 def connet_wifi(ssid, passwd):
     
     #waitResp() 
-    sendCMD_waitResp("AT+RST") #reset the esp8266       #sendCMD是ESP8266的AT Command
-    sendCMD_waitResp("AT+CWMODE=0")   #set wifi mode 1:client 2:AP 3: Both  #開啟wifi 模式
-    sendCMD_waitResp('AT+CWJAP='+"My ASUS"+','+"jade1234",timeout=5000) #connecting
+    sendCMD_waitResp("AT+RST") #reset the esp8266       #sendCMD是ESP8266的AT Command;RST是重開ESP8266
+    sendCMD_waitResp("AT+CWMODE=0")   #set wifi mode 1:client(也就是者)2:AP(也就是基地台) 3: Both  #開啟wifi 模式
+    sendCMD_waitResp('AT+CWJAP='+"My ASUS"+','+"jade1234",timeout=5000)  #connecting,連接基地台
     sendCMD_waitResp("AT+CIPMUX=0")  # 0: single connection(自己去連別人); 1:multi user(多人連線，連很多serever,被別人連才用這個)
-    resp=sendCMD_waitResp("AT+CIFSR")
+    resp=sendCMD_waitResp("AT+CIFSR")   #顯示對方(基地台或是使用者)的IP
     start=resp.find('"')+1
     end=resp.find('"',start)
     return resp[start:end]  #myip
