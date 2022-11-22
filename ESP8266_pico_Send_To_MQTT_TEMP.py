@@ -70,8 +70,8 @@ def connet_wifi(ssid, passwd):
 def send_http_req(ip,port,url,method='GET'):            #HTTP訊息以get送出
 
     #GET /sensor?temp=28 HTTP/1.1\r\n\r\n'
-    url=method+' '+url+' HTTP/1.1\r\n\r\n'
-    sendCMD_waitResp('AT+CIPSTART="TCP","'+ip+'",'+str(port))
+    url=method+' '+url+' HTTP/1.1\r\n\r\n'          #字串GET帶入method，空一格，再填入/sensor?fire="ON"，再加HTTP/1.1\r\n\r\n
+    sendCMD_waitResp('AT+CIPSTART="TCP","'+ip+'",'+str(port))           #建立TCP連線
     sendCMD_waitResp('AT+CIPSEND='+str(len(url)))       #算送了幾個byte,並送出
     sendCMD_waitResp(url)               #送url
     sendCMD_waitResp("AT+CIPCLOSE")
