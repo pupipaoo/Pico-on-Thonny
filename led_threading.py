@@ -1,11 +1,11 @@
-from machine import Pin,Timer
+from machine import Pin,Timer    #Timer是執行緒套件
 import time
 
 led=Pin(25,Pin.OUT)
 led14=Pin(14,Pin.OUT)
 led15=Pin(15,Pin.OUT)
-tim1=Timer()
-tim2=Timer()
+tim1=Timer()     #建立執行緒1
+tim2=Timer()     #建立執行緒2
 
 def tick(timer):
     led14.toggle()
