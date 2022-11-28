@@ -47,7 +47,7 @@ while True:
     sendCMD_waitResp('AT+CIPSTART="TCP","184.106.153.149",80\r\n',500)
     sendCMD_waitResp("AT+CIPSEND="+Len+"\r\n",500)      #是指送幾個BYTE,也就是板子透過TCP送多少資料量給THINGSPEAK，500ms是指等多少時間
     sendCMD_waitResp("GET /update?api_key=ORAIVXS2FDL752J7&field1="+temp+"\r\n")    #GET 路徑?key=value&key=value \r\n    #temp原本就自串
-    sendCMD_waitResp("AT+CIPCLOSE\r\n")         #TCP斷線
+    sendCMD_waitResp("AT+CIPCLOSE\r\n")         #TCP斷線，因為連線到https，很消耗記憶體
     utime.sleep(5)
 
 sendCMD_waitResp("AT+CIPCLOSE=0\r\n")
