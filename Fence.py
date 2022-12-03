@@ -14,14 +14,14 @@ def ping():
     time.sleep_us(10)
     trig.value(0)
     count=0
-    timeout=False
+    timeout=False  #這行用不到
     start=time.ticks_us()
     while echo.value() == 0: #wait for HIGH
-        start=time.ticks_us()
+        start=time.ticks_us()  #tick是用來紀錄時間，單位us
     while echo.value() : #wait for HIGH
         stop=time.ticks_us()
-    duration = stop - start
-    dist = ( duration *0.034) /2
+    duration = stop - start   #回來的時間減掉去的時間
+    dist = ( duration *0.034) /2        #音速每秒340公尺，除以二是因為只要計算一段的距離，否則會算到去+回的距離;dist單位是公分
     return dist  
 def bi():
     for i in range (3000):
